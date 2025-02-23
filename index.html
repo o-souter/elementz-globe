@@ -8,6 +8,7 @@
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.126/Build/Cesium/Cesium.js"></script>
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.126/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
   <script src="getWeatherForecasts.js" defer></script>
+  <script src="findTheDuck.js" defer></script>
   <style>
     html,
     body,
@@ -196,6 +197,14 @@
       >
         Toggle Weather
       </button>
+      <button
+        id="find-duck"
+        class="floating-button"
+        onclick="placeTheDuck()"
+      >
+        Find the duck
+      </button>
+      
     </div>
   <script type="module">
     // Your access token can be found at: https://ion.cesium.com/tokens.
