@@ -16,7 +16,7 @@ document.getElementById("toggle-weather").addEventListener("click", () => {
     if (weatherVisible) {
       // If weather icons are visible, clear them
       clearWeatherIcons();
-      document.getElementById("toggle-weather").textContent = "Load Weather"; // Change button text
+    //   document.getElementById("toggle-weather").textContent = "Load Weather"; // Change button text
     } else {
       // If weather icons are not visible, load them only if not already loaded
       if (weatherEntities.length === 0) {
@@ -27,7 +27,7 @@ document.getElementById("toggle-weather").addEventListener("click", () => {
           })
           .catch((error) => console.error("Error loading weather forecast data from locations.json", error));
       }
-      document.getElementById("toggle-weather").textContent = "Clear Weather"; // Change button text
+    //   document.getElementById("toggle-weather").textContent = "Clear Weather"; // Change button text
     }
   
     // Toggle the weather visibility state
