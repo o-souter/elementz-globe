@@ -28,8 +28,10 @@ function plotPipelinesOnGlobe(data) {
   const ellipsoid = viewer.scene.globe.ellipsoid;
 
   // Remove existing pipeline entities
-  const pipelineEntities = viewer.entities.values.filter(entity => entity.pipeline === true);
-  pipelineEntities.forEach(entity => viewer.entities.remove(entity));
+  const pipelineEntities = viewer.entities.values.filter(
+    (entity) => entity.pipeline === true
+  );
+  pipelineEntities.forEach((entity) => viewer.entities.remove(entity));
 
   data.forEach((pipeline) => {
     // Create a new entity for each start point and end point
@@ -71,7 +73,7 @@ function plotPipelinesOnGlobe(data) {
     // plot the curve
     viewer.entities.add({
       name: pipeline.name,
-      pipeline:true,
+      pipeline: true,
       polyline: {
         positions: positions,
         width: 3,
@@ -82,6 +84,12 @@ function plotPipelinesOnGlobe(data) {
         arcType: Cesium.ArcType.GEODESIC,
         clampToGround: false,
       },
+      description: `Health: ${pipeline.health}<br>
+                   Pressure: ${pipeline.pressure} bar<br>
+                   Temperature: ${pipeline.temperature} °C<br>
+                   Flow Rate: ${pipeline.flow_rate} m³/h<br>
+                   Last Inspection: ${pipeline.last_inspection}<br>
+                   Next Maintenance: ${pipeline.next_maintenance}`,
     });
 
     // mark the start point and end point
@@ -110,4 +118,3 @@ function plotPipelinesOnGlobe(data) {
 
   viewer.zoomTo(viewer.entities);
 }
-
