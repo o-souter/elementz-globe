@@ -172,24 +172,27 @@
       </button>
       <button
         class="floating-button"
+        id="getSubseaPipelines"
         onclick="loadScript('getSubseaPipelines.js')"
       >
         Load Pipelines
       </button>
+
       <button
         class="floating-button"
-        onclick="loadScript('getWeatherForecasts.js')"
-      >
-        Load Weather
-      </button>
-      <button
-        class="floating-button"
+        id="getSubseaAssets"
         onclick="loadScript('getSubseaAssets.js')"
       >
         Load Assets
       </button>
       <button class="floating-button" onclick="loadScript('getSurfVessels.js')">
         Load Vessels
+      </button>
+      <button
+        class="floating-button"
+        onclick="loadScript('getWeatherForecasts.js')"
+      >
+        Load Weather
       </button>
     </div>
   <script type="module">
@@ -266,11 +269,22 @@
         filterItems("pipeline-filter", "health");
       });
 
-    // Initial filtering for both columns
-    filterItems("asset-filter", "health");
-    filterItems("pipeline-filter", "health");
-  </script>
+    document
+      .getElementById("getSubseaPipelines")
+      .addEventListener("click", function () {
+        filterItems("pipeline-filter", "health");
+      });
 
+    document
+      .getElementById("getSubseaAssets")
+      .addEventListener("click", function () {
+        filterItems("pipeline-filter", "health");
+      });
+
+    // Initial filtering for both columns
+    filterItems("asset-filter", "All");
+    filterItems("pipeline-filter", "All");
+  </script>
 
 <!-- <script src="getPointsOfInterest.js"></script>
 <script src="getSurfVessels.js"></script>

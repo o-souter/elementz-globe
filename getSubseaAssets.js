@@ -3,6 +3,15 @@ function filterAssets(assets, healthStatus) {
   return assets.filter((asset) => asset.health === healthStatus);
 }
 
+document.getElementById("getSubseaAssets").addEventListener("click", () => {
+  fetch("/subseaAssets.json")
+    .then((response) => response.json())
+    .then((data) => {
+      plotAssetsOnGlobe(data);
+    })
+    .catch((error) => console.error("Error loading assets.json:", error));
+});
+
 document.getElementById("asset-filter").addEventListener("change", () => {
   fetch("/subseaAssets.json")
     .then((response) => response.json())
@@ -17,6 +26,11 @@ document.getElementById("asset-filter").addEventListener("change", () => {
 function plotAssetsOnGlobe(data) {
   const viewer = window.viewer; //new Cesium.Viewer("cesiumContainer");
   const ellipsoid = viewer.scene.globe.ellipsoid;
+
+  // Remove existing asset entities before adding new ones
+  viewer.entities.values
+    .filter(entity => entity.asset === true)
+    .forEach(entity => viewer.entities.remove(entity));
 
   let assetPositions = {};
 
@@ -40,6 +54,7 @@ function plotAssetsOnGlobe(data) {
     // add assets to scenary
     viewer.entities.add({
       name: asset.name,
+      asset: true,
       position: position,
       ellipsoid: {
         radii: new Cesium.Cartesian3(500, 500, 500),
@@ -76,6 +91,7 @@ function plotAssetsOnGlobe(data) {
               material: Cesium.Color.CYAN.withAlpha(0.7),
               arcType: Cesium.ArcType.GEODESIC,
               clampToGround: false,
+              asset: true,
             },
           });
         }
