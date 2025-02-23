@@ -1,0 +1,134 @@
+[
+    {
+        "id": 1,
+        "name": "ELZ Aurora",
+        "vessel_type": "Survey",
+        "coordinates": {
+            "latitude": 57.3224444540274,
+            "longitude": -0.19091586949240597
+        },
+        "heading": 245.0,
+        "speed": 12.5,
+        "destination": "Aberdeen Port",
+        "eta": "2025-01-26T10:00:00Z",
+        "status": "Surveying",
+        "last_inspection": "2024-12-15T00:00:00Z",
+        "crew_count": 12,
+        "fuel_level": 80,
+        "weather": {
+            "wind_speed": 15.0,
+            "wave_height": 2.3,
+            "temperature": 10.0
+        }
+    },
+    {
+        "id": 2,
+        "name": "ELZ Discovery",
+        "vessel_type": "Research",
+        "coordinates": {
+            "latitude": 58.5,
+            "longitude": 1.2
+        },
+        "heading": 90.0,
+        "speed": 10.0,
+        "destination": "Thistle",
+        "eta": "2025-01-26T14:00:00Z",
+        "status": "EnRoute",
+        "last_inspection": "2024-11-30T10:00:00Z",
+        "crew_count": 15,
+        "fuel_level": 65,
+        "weather": {
+            "wind_speed": 12.0,
+            "wave_height": 1.8,
+            "temperature": 8.5
+        }
+    },
+    {
+        "id": 3,
+        "name": "ELZ Trident",
+        "vessel_type": "Cargo",
+        "coordinates": {
+            "latitude": 59.3,
+            "longitude": 2.0
+        },
+        "heading": 180.0,
+        "speed": 9.0,
+        "destination": "Logan",
+        "eta": "2025-01-27T12:00:00Z",
+        "status": "EnRoute",
+        "last_inspection": "2024-12-10T09:00:00Z",
+        "crew_count": 20,
+        "fuel_level": 50,
+        "weather": {
+            "wind_speed": 20.0,
+            "wave_height": 2.5,
+            "temperature": 9.0
+        }
+    },
+    {
+        "id": 4,
+        "name": "ELZ Forerunner",
+        "vessel_type": "Survey",
+        "coordinates": {
+            "latitude": 58.75,
+            "longitude": 1.45
+        },
+        "heading": 310.0,
+        "speed": 15.0,
+        "destination": "Balmoral",
+        "eta": "2025-01-26T18:00:00Z",
+        "status": "Surveying",
+        "last_inspection": "2024-12-01T08:00:00Z",
+        "crew_count": 10,
+        "fuel_level": 85,
+        "weather": {
+            "wind_speed": 18.0,
+            "wave_height": 2.8,
+            "temperature": 7.5
+        }
+    },
+    {
+        "id": 5,
+        "name": "ELZ Jasper",
+        "vessel_type": "Research",
+        "coordinates": {
+            "latitude": 58.9,
+            "longitude": -0.5
+        },
+        "heading": 270.0,
+        "speed": 11.0,
+        "destination": "Aberdeen Port",
+        "eta": "2025-01-27T08:00:00Z",
+        "status": "EnRoute",
+        "last_inspection": "2024-11-20T09:00:00Z",
+        "crew_count": 14,
+        "fuel_level": 40,
+        "weather": {
+            "wind_speed": 10.0,
+            "wave_height": 1.5,
+            "temperature": 9.8
+        }
+    },
+    {
+        "id": 6,
+        "name": "ELZ Justice",
+        "vessel_type": "Cargo",
+        "coordinates": {
+            "latitude": 59.0,
+            "longitude": 1.8
+        },
+        "heading": 135.0,
+        "speed": 8.5,
+        "destination": "Auchterloch",
+        "eta": "2025-01-27T15:00:00Z",
+        "status": "EnRoute",
+        "last_inspection": "2024-12-05T12:00:00Z",
+        "crew_count": 22,
+        "fuel_level": 55,
+        "weather": {
+            "wind_speed": 25.0,
+            "wave_height": 3.0,
+            "temperature": 6.5
+        }
+    }
+]

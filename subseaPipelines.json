@@ -1,0 +1,86 @@
+[
+    {
+        "id": 1,
+        "name": "Fergus Pipeline",
+        "start_coordinates": {
+            "coordinates": {
+                "latitude": 60.011834349365174,
+                "longitude": -0.6256759999431156
+            },
+            "depth": 210.0
+        },
+        "end_coordinates": {
+            "coordinates": {
+                "latitude": 57.58030239123823,
+                "longitude": -1.809830505627202
+            },
+            "depth": 210.0
+        },
+        "health": "Degraded",
+        "pressure": 105.0,
+        "temperature": 14.8,
+        "flow_rate": 2700.0,
+        "last_inspection": "2024-11-10T09:00:00Z",
+        "next_maintenance": "2025-04-01T10:00:00Z",
+        "alerts": [
+            "Pressure drop detected"
+        ],
+        "open_anomaly_count": 67
+    },
+    {
+        "id": 2,
+        "name": "SNIP Pipeline",
+        "start_coordinates": {
+            "coordinates": {
+                "latitude": 54.95366950582399,
+                "longitude": -3.365944564974183
+            },
+            "depth": 0.0
+        },
+        "end_coordinates": {
+            "coordinates": {
+                "latitude": 54.256256699607135,
+                "longitude": -5.58288333128205
+            },
+            "depth": 210.0
+        },
+        "health": "Healthy",
+        "pressure": 104.0,
+        "temperature": 16.8,
+        "flow_rate": 2900.0,
+        "last_inspection": "2024-11-10T09:00:00Z",
+        "next_maintenance": "2025-04-01T10:00:00Z",
+        "alerts": [
+            "None"
+        ],
+        "open_anomaly_count": 21
+    },
+    {
+        "id": 3,
+        "name": "DOGS Pipeline",
+        "start_coordinates": {
+            "coordinates": {
+                "latitude": 56.33032266178919,
+                "longitude": 1.0382213051032838
+            },
+            "depth": 240.0
+        },
+        "end_coordinates": {
+            "coordinates": {
+                "latitude": 54.72343080253808,
+                "longitude": -1.1963326064285826
+            },
+            "depth": 0.0
+        },
+        "health": "Healthy",
+        "pressure": 110.0,
+        "temperature": 13.8,
+        "flow_rate": 2600.0,
+        "last_inspection": "2024-07-10T09:00:00Z",
+        "next_maintenance": "2025-05-01T10:00:00Z",
+        "alerts": [
+            "None"
+        ],
+        "open_anomaly_count": 38
+    }
+]

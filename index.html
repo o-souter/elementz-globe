@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elementz Globe</title>
+  <!-- Use Cesium from CDN (non-module version) -->
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.126/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.126/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <style>
+    html,
+    body,
+    #cesiumContainer {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    /* Floating dashboard style */
+    .floating-dashboard {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+      width: 300px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .floating-dashboard h1 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .floating-dashboard select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #f4f4f4;
+      font-size: 16px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .column {
+      width: 48%;
+    }
+
+    .item {
+      display: none;
+    }
+
+    .item.show {
+      display: block;
+    }
+
+    .map {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: #e0e0e0;
+    }
+
+    /* 悬浮按钮容器 */
+    .floating-buttons {
+      position: fixed;
+      bottom: 100px; /* 控制距离底部的间距 */
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px; /* 按钮间隔 */
+      z-index: 9999; /* 确保按钮在最上层 */
+    }
+    .floating-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .floating-button:hover {
+      background-color: #0056b3;
+      transform: translateY(-5px);
+    }
+
+    @media (max-width: 600px) {
+      .floating-buttons {
+        flex-direction: column;
+        bottom: 50px;
+      }
+
+      .floating-button {
+        width: 80%;
+        text-align: center;
+      }
+    }
+  </style>
+
+  
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+  <!-- Floating Dashboard Component -->
+  <div class="floating-dashboard">
+    <h1>Health Status Monitor</h1>
+
+    <div class="container">
+      <!-- Assets Column -->
+      <div class="column">
+        <h3>Assets</h3>
+        <select id="asset-filter">
+          <option value="All">All</option>
+          <option value="Healthy">Healthy</option>
+          <option value="Degraded">Degraded</option>
+          <option value="Critical">Critical</option>
+          <option value="Offline">Offline</option>
+          <option value="Unknown">Unknown</option>
+        </select>
+
+        <div class="item health-healthy">Asset 1 - Healthy</div>
+        <div class="item health-degraded">Asset 2 - Degraded</div>
+        <div class="item health-critical">Asset 3 - Critical</div>
+        <div class="item health-offline">Asset 4 - Offline</div>
+        <div class="item health-unknown">Asset 5 - Unknown</div>
+      </div>
+
+      <!-- Pipelines Column -->
+      <div class="column">
+        <h3>Pipelines</h3>
+        <select id="pipeline-filter">
+          <option value="All">All</option>
+          <option value="Healthy">Healthy</option>
+          <option value="Degraded">Degraded</option>
+          <option value="Critical">Critical</option>
+          <option value="Offline">Offline</option>
+          <option value="Unknown">Unknown</option>
+        </select>
+
+        <div class="item health-healthy">Pipeline 1 - Healthy</div>
+        <div class="item health-degraded">Pipeline 2 - Degraded</div>
+        <div class="item health-critical">Pipeline 3 - Critical</div>
+        <div class="item health-offline">Pipeline 4 - Offline</div>
+        <div class="item health-unknown">Pipeline 5 - Unknown</div>
+      </div>
+    </div>
+  </div>
+
+  // end of the floating module // floating button
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+      <button
+        class="floating-button"
+        onclick="loadScript('getPointsOfInterest.js')"
+      >
+        Load POI
+      </button>
+      <button
+        class="floating-button"
+        onclick="loadScript('getSubseaPipelines.js')"
+      >
+        Load Pipelines
+      </button>
+      <button
+        class="floating-button"
+        onclick="loadScript('getWeatherForecasts.js')"
+      >
+        Load Weather
+      </button>
+      <button
+        class="floating-button"
+        onclick="loadScript('getSubseaAssets.js')"
+      >
+        Load Assets
+      </button>
+      <button class="floating-button" onclick="loadScript('getSurfVessels.js')">
+        Load Vessels
+      </button>
+    </div>
+  <script type="module">
+    // Your access token can be found at: https://ion.cesium.com/tokens.
+    // This is the default access token from your ion account
+
+    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzNWQ0YTQ3Mi1mMzA3LTQ3NzctODk0Yi0xMzQ3YTg5YWVjZGUiLCJpZCI6Mjc4MjI4LCJpYXQiOjE3NDAyMzYyOTd9.lRar_ufo0UMn-SIVZRSUUnVpZLkAtNEJjG3YGAuQAtw';
+
+    // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
+    window.viewer = new Cesium.Viewer('cesiumContainer', {
+      terrain: Cesium.Terrain.fromWorldTerrain(),
+      useBrowserRecommendedResolution: false,
+      resolutionScale : 2.0,
+    });    
+    viewer.imageryLayers.removeAll(); // Remove existing layers
+    viewer.imageryLayers.addImageryProvider(new Cesium.OpenStreetMapImageryProvider({
+        url: "https://a.tile.openstreetmap.org/"
+    }));
+    // Fly the camera to San Francisco at the given longitude, latitude, and height.
+    // viewer.camera.flyTo({
+    //     destination: Cesium.Cartesian3.fromDegrees(0, 0, 20000000),
+    //     duration: 2 // Smooth animation over 2 seconds
+    // });
+
+    // Add Cesium OSM Buildings, a global 3D buildings layer.
+    // const buildingTileset = await Cesium.createOsmBuildingsAsync();
+    // viewer.scene.primitives.add(buildingTileset);   
+
+    viewer.camera.defaultZoomAmount = 30;
+    viewer.zoomTo(viewer.entities);
+
+
+
+  </script>
+  <script>
+    function loadScript(file) {
+      const script = document.createElement("script");
+      script.src = file;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
+    // JavaScript to handle filtering of assets and pipelines based on health status
+    function filterItems(selectId, classPrefix) {
+      const select = document.getElementById(selectId);
+      const selectedStatus = select.value;
+      const items = document.querySelectorAll("." + classPrefix);
+
+      items.forEach((item) => {
+        if (selectedStatus === "All") {
+          item.classList.add("show");
+        } else if (
+          item.classList.contains(
+            classPrefix + "-" + selectedStatus.toLowerCase()
+          )
+        ) {
+          item.classList.add("show");
+        } else {
+          item.classList.remove("show");
+        }
+      });
+    }
+
+    // Event listeners for filtering assets and pipelines
+    document
+      .getElementById("asset-filter")
+      .addEventListener("change", function () {
+        filterItems("asset-filter", "health");
+      });
+
+    document
+      .getElementById("pipeline-filter")
+      .addEventListener("change", function () {
+        filterItems("pipeline-filter", "health");
+      });
+
+    // Initial filtering for both columns
+    filterItems("asset-filter", "health");
+    filterItems("pipeline-filter", "health");
+  </script>
+
+
+<!-- <script src="getPointsOfInterest.js"></script>
+<script src="getSurfVessels.js"></script>
+<script src="getSubseaPipelines.js"></script>
+<script src="getSubseaAssets.js"></script>
+<script src="getWeatherForecasts.js"></script> -->
+<!-- <script src="zoom.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,74 @@
+[
+    {
+        "coordinates": {
+            "latitude": 57.118696610829296,
+            "longitude": -2.1350145324081367
+        },
+        "id": 1,
+        "name": "RGU",
+        "description": "Robert Gordon University"
+    },
+    {
+        "coordinates": {
+            "latitude": 57.12472316954158,
+            "longitude": -2.1235538589339824
+        },
+        "id": 2,
+        "name": "Asda",
+        "description": "Asda Bridge Of Dee"
+    },
+    {
+        "coordinates": {
+            "latitude": 57.142790740283466,
+            "longitude": -2.0683673297215033
+        },
+        "id": 3,
+        "name": "Marine Ops",
+        "description": "Aberdeen Harbour Marine Operations Centre"
+    },
+    {
+        "coordinates": {
+            "latitude": 57.164778205530816,
+            "longitude": -2.1015163130633314
+        },
+        "id": 4,
+        "name": "AU",
+        "description": "The Other University"
+    },
+    {
+        "coordinates": {
+            "latitude": 57.49703458577146,
+            "longitude": -1.7737915403931885
+        },
+        "id": 5,
+        "name": "Peterhead Harbour",
+        "description": "Peterhead Harbour"
+    },
+    {
+        "coordinates": {
+            "latitude": 56.71138386464451,
+            "longitude": -2.5007948245353546
+        },
+        "id": 6,
+        "name": "Montrose Basin",
+        "description": "Montrose Basin"
+    },
+    {
+        "coordinates": {
+            "latitude": 57.575264769752714,
+            "longitude": -1.8395026785798918
+        },
+        "id": 6,
+        "name": "St Fergus Gas Terminal",
+        "description": "St Fergus McCann Gas Terminal"
+    },
+    {
+        "coordinates": {
+            "latitude": 57.691400071252325,
+            "longitude": -2.8200365620642267
+        },
+        "id": 6,
+        "name": "Cullen Ice Cream Shop",
+        "description": "Cullen Ice Cream Shop"
+    }
+]
