@@ -7,6 +7,7 @@
   <!-- Use Cesium from CDN (non-module version) -->
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.126/Build/Cesium/Cesium.js"></script>
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.126/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <script src="getWeatherForecasts.js" defer></script>
   <style>
     html,
     body,
@@ -189,10 +190,11 @@
         Load Vessels
       </button>
       <button
+        id="toggle-weather"
         class="floating-button"
-        onclick="loadScript('getWeatherForecasts.js')"
+        onclick="toggleWeatherForecasts()"
       >
-        Load Weather
+        Toggle Weather
       </button>
     </div>
   <script type="module">

@@ -82,6 +82,7 @@ function plotAssetsOnGlobe(data) {
       asset.connected_assets.forEach((connectedAsset) => {
         if (assetPositions[connectedAsset]) {
           viewer.entities.add({
+            asset:true,
             polyline: {
               positions: [
                 assetPositions[asset.name],

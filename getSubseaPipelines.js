@@ -110,3 +110,4 @@ function plotPipelinesOnGlobe(data) {
 
   viewer.zoomTo(viewer.entities);
 }
+
