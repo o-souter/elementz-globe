@@ -1,4 +1,4 @@
-const apiKey = "8979be4b3b1fc0f59f684764f8c3d823"
+const apiKey = "ADD_API_KEY_HERE"
 let weatherEntities = []
 let weatherVisible = false
 // fetch("/locations.json")
